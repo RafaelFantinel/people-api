@@ -1,13 +1,13 @@
 package com.people.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 import com.people.models.People;
 import com.people.repositories.PeopleRepository;
 
@@ -22,9 +22,8 @@ public class PeopleService {
 		return peopleRepository.save(people);
 	}
 
-	public List<People> findAll() {
-
-		return peopleRepository.findAll();
+	public Page<People> findAll(Pageable pageable) {
+		return peopleRepository.findAll(pageable);
 	}
 
 	public Optional<People> findPeopleById(Long id) {
