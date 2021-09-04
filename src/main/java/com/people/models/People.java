@@ -1,5 +1,6 @@
 package com.people.models;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -25,6 +27,10 @@ public class People {
 	@Column
 	private String cpf;
 
+	@Column
+    @JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data_nascimento;
+	
 	@JsonIgnoreProperties("people")
 	@Valid
 	@OneToMany(mappedBy = "people", cascade = CascadeType.ALL)
@@ -53,6 +59,14 @@ public class People {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	public LocalDate getData_nascimento() {
+		return data_nascimento;
+	}
+
+	public void setData_nascimento(LocalDate data_nascimento) {
+		this.data_nascimento = data_nascimento;
+	}
 
 	public List<Contact> getContacts() {
 		return contacts;
@@ -61,14 +75,5 @@ public class People {
 	public void setContacts(List<Contact> contacts) {
 		this.contacts = contacts;
 	}
-
-//
-//	public LocalDate getData_nascimento() {
-//		return data_nascimento;
-//	}
-//
-//	public void setData_nascimento(LocalDate data_nascimento) {
-//		this.data_nascimento = data_nascimento;
-//	}
 
 }

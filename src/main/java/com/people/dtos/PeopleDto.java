@@ -1,8 +1,14 @@
 package com.people.dtos;
 
+import java.time.LocalDate;
 import java.util.List;
+
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.br.CPF;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.people.models.Contact;
 
 
@@ -13,6 +19,10 @@ public class PeopleDto {
 	@CPF
 	private String cpf;
 	
+	@NotNull
+    @JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data_nascimento;
+
 	private List<Contact> contacts;
 	
 	public String getNome() {
@@ -26,6 +36,13 @@ public class PeopleDto {
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public LocalDate getData_nascimento() {
+		return data_nascimento;
+	}
+	public void setData_nascimento(LocalDate data_nascimento) {
+		this.data_nascimento = data_nascimento;
 	}
 	public List<Contact> getContacts() {
 		return contacts;
