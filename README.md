@@ -12,11 +12,11 @@
   - <strong>Swagger para documetar a API</strong>
 
  ## Produção<br>
- O deploy da API desenvolvida foi  feito pelo Heroku, e está disponível atravéz  da url:<br>
+ O deploy da API desenvolvida foi  feito pelo Heroku, e está disponível através  da url:<br>
 https://afternoon-savannah-87968.herokuapp.com/
 
  ## Swagger<br>
- A documentação da API está disponivel atravéz da url:<br>
+ A documentação da API está disponivel através da url:<br>
 https://afternoon-savannah-87968.herokuapp.com/swagger-ui.html
 
 
