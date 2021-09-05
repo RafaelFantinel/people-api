@@ -27,6 +27,20 @@ public class Contact {
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "id_people")
 	private People people;
+	
+
+	public Contact(long id, String nome, String telefone, @Email String email, People people) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.telefone = telefone;
+		this.email = email;
+		this.people = people;
+	}
+
+	public Contact() {
+		super();
+	}
 
 	public long getId() {
 		return id;

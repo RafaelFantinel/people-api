@@ -36,6 +36,7 @@ public class People {
 	@OneToMany(mappedBy = "people", cascade = CascadeType.ALL)
 	private List<Contact> contacts;
 
+
 	public long getId() {
 		return id;
 	}

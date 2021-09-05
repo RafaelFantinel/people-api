@@ -13,6 +13,7 @@ import com.people.models.Contact;
 
 
 public class PeopleDto {
+	
 	@NotBlank
 	private String nome;
 	@NotBlank
@@ -24,6 +25,15 @@ public class PeopleDto {
 	private LocalDate data_nascimento;
 
 	private List<Contact> contacts;
+	
+	public PeopleDto(@NotBlank String nome, @NotBlank @CPF String cpf, @NotNull @JsonFormat(pattern = "dd/MM/yyyy") LocalDate data_nascimento,
+			List<Contact> contacts) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.data_nascimento = data_nascimento;
+		this.contacts = contacts;
+	}
 	
 	public String getNome() {
 		return nome;
