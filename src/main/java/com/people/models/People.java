@@ -12,6 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,17 +29,26 @@ public class People {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	private String nome;
 	@Column
+	@NotBlank(message = "Preencha o campo Nome")
+	@NotNull(message = "Preencha o campo Nome")
+	private String nome;
+	
+	@Column
+	@NotBlank(message = "Preencha o campo CPF")
+	@NotNull(message = "Preencha o campo CPF")
+	@CPF
 	private String cpf;
 
-	@Column
-    @JsonFormat(pattern = "dd/MM/yyyy")
+	 @JsonFormat(pattern = "dd/MM/yyyy")
+	 @PastOrPresent(message= "Datas futuras são inválidas")
+	 @NotNull
 	private LocalDate data_nascimento;
 	
 	@JsonIgnoreProperties("people")
 	@Valid
 	@OneToMany(mappedBy = "people", cascade = CascadeType.ALL)
+	@NotEmpty(message= "Informe ao menos 1 contato")
 	private List<Contact> contacts;
 
 

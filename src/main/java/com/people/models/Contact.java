@@ -1,6 +1,7 @@
 package com.people.models;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "tbl_contact")
@@ -16,12 +19,21 @@ public class Contact {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-
+	
+	@Column
+	@NotBlank(message = "Preencha o campo Nome")
+	@NotNull(message = "Preencha o campo Nome")
 	private String nome;
 
+	@Column
+	@NotBlank(message = "Preencha o campo Telefone")
+	@NotNull(message = "Preencha o campo Telefone")
 	private String telefone;
 
 	@Email
+	@Column
+	@NotBlank(message = "Preencha o campo E-mail")
+	@NotNull(message = "Preencha o campo E-mail")
 	private String email;
 
 	@ManyToOne(cascade=CascadeType.PERSIST)

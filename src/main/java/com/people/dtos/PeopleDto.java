@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.validator.constraints.br.CPF;
 
@@ -14,16 +16,21 @@ import com.people.models.Contact;
 
 public class PeopleDto {
 	
-	@NotBlank
+	@NotBlank(message = "Preencha o campo Nome")
+	@NotNull(message = "Preencha o campo Nome")
 	private String nome;
-	@NotBlank
+	
+	@NotBlank(message = "Preencha o campo CPF")
+	@NotNull(message = "Preencha o campo CPF")
 	@CPF
 	private String cpf;
 	
-	@NotNull
     @JsonFormat(pattern = "dd/MM/yyyy")
+	@PastOrPresent(message= "Datas futuras são inválidas")
+    @NotNull
 	private LocalDate data_nascimento;
 
+	@NotEmpty(message= "Informe ao menos 1 contato")
 	private List<Contact> contacts;
 	
 	public PeopleDto(@NotBlank String nome, @NotBlank @CPF String cpf, @NotNull @JsonFormat(pattern = "dd/MM/yyyy") LocalDate data_nascimento,
